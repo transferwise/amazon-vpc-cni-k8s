@@ -23,9 +23,9 @@ import (
 
 	"github.com/aws/aws-sdk-go/aws"
 
-	"github.com/aws/amazon-vpc-cni-k8s/pkg/ec2metadata/mocks"
-	"github.com/aws/amazon-vpc-cni-k8s/pkg/ec2wrapper/mocks"
-	"github.com/aws/amazon-vpc-cni-k8s/pkg/resourcegroupstaggingapiwrapper/mocks"
+	"github.com/transferwise/amazon-vpc-cni-k8s/pkg/ec2metadata/mocks"
+	"github.com/transferwise/amazon-vpc-cni-k8s/pkg/ec2wrapper/mocks"
+	"github.com/transferwise/amazon-vpc-cni-k8s/pkg/resourcegroupstaggingapiwrapper/mocks"
 )
 
 const (

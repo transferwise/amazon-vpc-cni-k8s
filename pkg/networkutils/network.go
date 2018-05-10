@@ -25,8 +25,8 @@ import (
 	"github.com/coreos/go-iptables/iptables"
 	"github.com/vishvananda/netlink"
 
-	"github.com/aws/amazon-vpc-cni-k8s/pkg/netlinkwrapper"
-	"github.com/aws/amazon-vpc-cni-k8s/pkg/nswrapper"
+	"github.com/transferwise/amazon-vpc-cni-k8s/pkg/netlinkwrapper"
+	"github.com/transferwise/amazon-vpc-cni-k8s/pkg/nswrapper"
 )
 
 const (

@@ -17,8 +17,8 @@ import (
 	"encoding/json"
 	"k8s.io/kubernetes/pkg/api"
 
-	"github.com/aws/amazon-vpc-cni-k8s/pkg/httpwrapper"
-	"github.com/aws/amazon-vpc-cni-k8s/pkg/ioutilwrapper"
+	"github.com/transferwise/amazon-vpc-cni-k8s/pkg/httpwrapper"
+	"github.com/transferwise/amazon-vpc-cni-k8s/pkg/ioutilwrapper"
 	"github.com/pkg/errors"
 
 	log "github.com/cihub/seelog"

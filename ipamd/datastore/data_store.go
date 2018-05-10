@@ -20,7 +20,7 @@ import (
 	log "github.com/cihub/seelog"
 	"github.com/pkg/errors"
 
-	"github.com/aws/amazon-vpc-cni-k8s/pkg/k8sapi"
+	"github.com/transferwise/amazon-vpc-cni-k8s/pkg/k8sapi"
 )
 
 const (

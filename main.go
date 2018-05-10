@@ -18,7 +18,7 @@ import (
 
 	"github.com/aws/amazon-ecs-cni-plugins/pkg/logger"
 
-	"github.com/aws/amazon-vpc-cni-k8s/ipamd"
+	"github.com/transferwise/amazon-vpc-cni-k8s/ipamd"
 	log "github.com/cihub/seelog"
 )
 
