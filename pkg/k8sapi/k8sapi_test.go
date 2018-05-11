@@ -23,8 +23,8 @@ import (
 	"github.com/stretchr/testify/assert"
 	"k8s.io/kubernetes/pkg/api"
 
-	"github.com/aws/amazon-vpc-cni-k8s/pkg/httpwrapper/mocks"
-	"github.com/aws/amazon-vpc-cni-k8s/pkg/ioutilwrapper/mocks"
+	"github.com/transferwise/amazon-vpc-cni-k8s/pkg/httpwrapper/mocks"
+	"github.com/transferwise/amazon-vpc-cni-k8s/pkg/ioutilwrapper/mocks"
 )
 
 const (

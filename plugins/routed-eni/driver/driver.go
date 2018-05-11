@@ -24,9 +24,9 @@ import (
 
 	log "github.com/cihub/seelog"
 
-	"github.com/aws/amazon-vpc-cni-k8s/pkg/ipwrapper"
-	"github.com/aws/amazon-vpc-cni-k8s/pkg/netlinkwrapper"
-	"github.com/aws/amazon-vpc-cni-k8s/pkg/nswrapper"
+	"github.com/transferwise/amazon-vpc-cni-k8s/pkg/ipwrapper"
+	"github.com/transferwise/amazon-vpc-cni-k8s/pkg/netlinkwrapper"
+	"github.com/transferwise/amazon-vpc-cni-k8s/pkg/nswrapper"
 )
 
 const (

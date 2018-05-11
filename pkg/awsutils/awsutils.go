@@ -22,9 +22,9 @@ import (
 
 	log "github.com/cihub/seelog"
 
-	"github.com/aws/amazon-vpc-cni-k8s/pkg/ec2metadata"
-	"github.com/aws/amazon-vpc-cni-k8s/pkg/ec2wrapper"
-	"github.com/aws/amazon-vpc-cni-k8s/pkg/resourcegroupstaggingapiwrapper"
+	"github.com/transferwise/amazon-vpc-cni-k8s/pkg/ec2metadata"
+	"github.com/transferwise/amazon-vpc-cni-k8s/pkg/ec2wrapper"
+	"github.com/transferwise/amazon-vpc-cni-k8s/pkg/resourcegroupstaggingapiwrapper"
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/arn"
 	"github.com/aws/aws-sdk-go/aws/awserr"

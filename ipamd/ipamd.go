@@ -14,7 +14,6 @@
 package ipamd
 
 import (
-	"net"
 	"strings"
 	"time"
 
@@ -25,10 +24,10 @@ import (
 
 	"github.com/aws/aws-sdk-go/service/ec2"
 
-	"github.com/aws/amazon-vpc-cni-k8s/ipamd/datastore"
-	"github.com/aws/amazon-vpc-cni-k8s/pkg/awsutils"
-	"github.com/aws/amazon-vpc-cni-k8s/pkg/k8sapi"
-	"github.com/aws/amazon-vpc-cni-k8s/pkg/networkutils"
+	"github.com/transferwise/amazon-vpc-cni-k8s/ipamd/datastore"
+	"github.com/transferwise/amazon-vpc-cni-k8s/pkg/awsutils"
+	"github.com/transferwise/amazon-vpc-cni-k8s/pkg/k8sapi"
+	"github.com/transferwise/amazon-vpc-cni-k8s/pkg/networkutils"
 )
 
 // Package ipamd is a long running daemon which manages a warn-pool of available IP addresses.
@@ -86,20 +85,6 @@ func (c *IPAMContext) nodeInit() error {
 	if err != nil {
 		log.Error("Failed to retrive ENI info")
 		return errors.New("ipamd init: failed to retrieve attached ENIs info")
-	}
-
-	_, vpcCIDR, err := net.ParseCIDR(c.awsClient.GetVPCIPv4CIDR())
-	if err != nil {
-		log.Error("Failed to parse VPC IPv4 CIDR", err.Error())
-		return errors.Wrap(err, "ipamd init: failed to retrieve VPC CIDR")
-	}
-
-	primaryIP := net.ParseIP(c.awsClient.GetLocalIPv4())
-
-	err = c.networkClient.SetupHostNetwork(vpcCIDR, &primaryIP)
-	if err != nil {
-		log.Error("Failed to setup host network", err)
-		return errors.Wrap(err, "ipamd init: failed to setup host network")
 	}
 
 	c.dataStore = datastore.NewDataStore()

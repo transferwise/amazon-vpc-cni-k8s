@@ -21,7 +21,7 @@ import (
 	context "golang.org/x/net/context"
 	reflect "reflect"
 
-	rpc "github.com/aws/amazon-vpc-cni-k8s/rpc"
+	rpc "github.com/transferwise/amazon-vpc-cni-k8s/rpc"
 	gomock "github.com/golang/mock/gomock"
 	grpc "google.golang.org/grpc"
 )

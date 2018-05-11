@@ -18,15 +18,15 @@ import (
 
 	"github.com/pkg/errors"
 
-	pb "github.com/aws/amazon-vpc-cni-k8s/rpc"
+	pb "github.com/transferwise/amazon-vpc-cni-k8s/rpc"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 
 	log "github.com/cihub/seelog"
 
-	"github.com/aws/amazon-vpc-cni-k8s/ipamd/datastore"
-	"github.com/aws/amazon-vpc-cni-k8s/pkg/k8sapi"
+	"github.com/transferwise/amazon-vpc-cni-k8s/ipamd/datastore"
+	"github.com/transferwise/amazon-vpc-cni-k8s/pkg/k8sapi"
 )
 
 const (

@@ -1,3 +1,28 @@
+This fork fixes routing issues for pods with IP addresses on secondary ENIs.
+
+The proposal document below makes an assumption that the traffic for secondary ENIs
+always arrives on primary ENI, but that does not seem to be the case.
+
+## Mac OS X
+
+### Install Go and tools
+
+```
+brew install go
+brew install dep
+```
+
+### Build and push the image
+Dev version (dev-$DATE-$USER):
+```
+make release
+```
+
+Release version:
+```
+make release version='0.1.4-???'
+```
+
 # amazon-vpc-cni-k8s
 Networking plugin for pod networking in [Kubernetes](https://kubernetes.io/) using [Elastic Network Interfaces](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html) on AWS.
 

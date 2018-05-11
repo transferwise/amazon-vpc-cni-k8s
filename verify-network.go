@@ -15,8 +15,8 @@ package main
 
 import (
 	"fmt"
-	"github.com/aws/amazon-vpc-cni-k8s/pkg/networkutils"
-	"github.com/aws/amazon-vpc-cni-k8s/plugins/routed-eni/driver"
+	"github.com/transferwise/amazon-vpc-cni-k8s/pkg/networkutils"
+	"github.com/transferwise/amazon-vpc-cni-k8s/plugins/routed-eni/driver"
 	"net"
 )
 
