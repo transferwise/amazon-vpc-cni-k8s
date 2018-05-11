@@ -12,26 +12,52 @@
 # language governing permissions and limitations under the License.
 #
 
-# build binary
-static:
-	go build -o aws-k8s-agent main.go
-	go build -o aws-cni plugins/routed-eni/cni.go
-	go build verify-aws.go
-	go build verify-network.go
+# Use := syntax here to not evaluate each time lol
+time_label := $(shell date -u +%Y%m%d-%H%M%SZ)
+version = dev-${time_label}-${USER}
 
-# need to bundle certificates
-certs: misc/certs/ca-certificates.crt
-misc/certs/ca-certificates.crt:
-	docker build -t "amazon/amazon-k8s-cert-source:make" misc/certs/
-	docker run "amazon/amazon-k8s-cert-source:make" cat /etc/ssl/certs/ca-certificates.crt > misc/certs/ca-certificates.crt
+docker_repo = docker-local-artifacts.transferwise.com
+docker_image_name = transferwise/amazon-k8s-cni
+docker_tag = ${docker_repo}/${docker_image_name}:${version}
 
+release: docker-login clean resources dependencies binaries docker-image docker-push
 
-# build docker image
-docker: certs
-	@docker build -f scripts/dockerfiles/Dockerfile.release -t "amazon/amazon-k8s-cni:latest" .
-	@echo "Built Docker image \"amazon/amazon-k8s-cni:latest\""
+docker-login:
+	docker login ${docker_repo}
 
-# unit-test
+docker-image:
+	docker build ./build --tag=${docker_tag}
+
+docker-push:
+	docker push ${docker_tag}
+
+create-build-folder:
+	mkdir -p ./build
+
+clean:
+	rm -rf ./build
+	go clean -cache
+
+dependencies:
+	dep ensure
+
+binaries: create-build-folder
+	export GOOS='linux'; \
+	export GOARCH='amd64'; \
+	go build -o ./build/aws-k8s-agent main.go; \
+	go build -o ./build/aws-cni	plugins/routed-eni/cni.go; \
+	go build -o ./build/verify-aws verify-aws.go; \
+	go build -o ./build/verify-network verify-network.go;
+
+resources: create-build-folder
+	cp \
+	Dockerfile \
+	misc/aws.conf \
+	scripts/aws-cni-support.sh \
+	scripts/install-aws.sh \
+	build/
+
+# warning: here be AWS API calls!
 unit-test:
 	go test -v -cover -race -timeout 150s ./pkg/awsutils/...
 	go test -v -cover -race -timeout 10s ./plugins/routed-eni/...
@@ -40,7 +66,6 @@ unit-test:
 	go test -v -cover -race -timeout 10s ./pkg/networkutils/...
 	go test -v -cover -race -timeout 10s ./ipamd/...
 
-#golint
 lint:
 	golint pkg/awsutils/*.go
 	golint plugins/routed-eni/*.go
@@ -50,7 +75,6 @@ lint:
 	golint ipamd/*.go
 	golint ipamd/*/*.go
 
-#go tool vet
 vet:
 	go tool vet ./pkg/awsutils
 	go tool vet ./plugins/routed-eni
